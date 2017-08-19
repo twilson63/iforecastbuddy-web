@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name><![CDATA[Boat Ramps, Landings, & Marinas in Charleston SC]]></name>
+    <description>Marilynn helps find boat ramps, landings, fishing piers, and marinas in the Charleston SC area. More information found at www.ClassicCharlestonHomes.com</description>
+    <NetworkLink>
+      <name><![CDATA[Boat Ramps, Landings, & Marinas in Charleston SC]]></name>
+      <Link>
+        <href><![CDATA[http://www.google.com/maps/d/kml?forcekml=1&mid=1CiJVyMQK19pHvRgSQelMSTzdAoQ]]></href>
+      </Link>
+    </NetworkLink>
+  </Document>
+</kml>
