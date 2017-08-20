@@ -3,9 +3,13 @@ import { Link } from 'react-router-dom'
 // import About from '../pages/about'
 import React from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import store from '../store'
 
 const Header = props => {
+  const handleLink = to => e => {
+    props.history.push(to)
+  }
   return (
     <div>
       <header className="sans-serif">
@@ -59,17 +63,14 @@ const Header = props => {
               <Link to="/boatramps">My Boat Ramps</Link>
             </NavItem>
             <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1} href="/about-us">
+              <MenuItem eventKey={3.1} onClick={handleLink('/about-us')}>
                 About
               </MenuItem>
-              <MenuItem
-                eventKey={3.2}
-                href="../pages/forecasts/create-forecast"
-              >
+              <MenuItem eventKey={3.2} onClick={handleLink('/createforecast')}>
                 Add a Forecast
               </MenuItem>
-              <MenuItem eventKey={3.3}>
-                <Link to="/location">My location</Link>
+              <MenuItem eventKey={3.3} onClick={handleLink('/location')}>
+                My location
               </MenuItem>
               <MenuItem divider />
               <MenuItem eventKey={3.3}>Separated link</MenuItem>

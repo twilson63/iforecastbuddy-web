@@ -8,9 +8,8 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom'
 // Attempting to Fix links
 import history from './history'
 
-// components
-import Header from './components/header'
-import Footer from './components/footer'
+// pages/layout
+import Layout from './pages/layout'
 
 // pages/root
 import Home from './pages/home'
@@ -42,33 +41,30 @@ import geolocated from './pages/location/location'
 export default class App extends React.Component {
   render() {
     return (
-      <div>
-        <Header />
-        <main>
-          <BrowserRouter history={history}>
-            <div>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/about-us" component={About} />
-                <Route path="/signup" component={CreateUser} />
-                <Route path="/user" componenet={ShowUser} />
-                <Route path="/location" component={geolocated} />
-                <Route path="/forecasts" component={ForecastsList} />
-                <Route path="/login" component={Login} />
-                <Route path="/import" component={ImportWeather} />
-                <Route path="/createforecast" component={CreateForecast} />
-                <Route path="/simpleMap" component={SimpleMapExample} />
-                <Route path="/geoMap" component={GeolocationExample} />
-                <Route path="/boatramps" component={KmlLayerExample} />
-                <Route path="/footer/boatramps" component={FooterBoatRamps} />
-                <Route path="/markermap" component={MarkerMapExampleGoog} />
-                <Route path="/iframe" component={PageWidget} />
-              </Switch>
-            </div>
-          </BrowserRouter>
-        </main>
-        <Footer />
-      </div>
+      <BrowserRouter history={history}>
+        <div>
+          <Switch>
+            <Route exact path="/" component={Layout(Home)} />
+            <Route path="/about-us" component={Layout(About)} />
+            <Route path="/signup" component={Layout(CreateUser)} />
+            <Route path="/user" componenet={Layout(ShowUser)} />
+            <Route path="/location" component={Layout(geolocated)} />
+            <Route path="/forecasts" component={Layout(ForecastsList)} />
+            <Route path="/login" component={Layout(Login)} />
+            <Route path="/import" component={Layout(ImportWeather)} />
+            <Route path="/createforecast" component={Layout(CreateForecast)} />
+            <Route path="/simpleMap" component={Layout(SimpleMapExample)} />
+            <Route path="/geoMap" component={Layout(GeolocationExample)} />
+            <Route path="/boatramps" component={Layout(KmlLayerExample)} />
+            <Route
+              path="/footer/boatramps"
+              component={Layout(FooterBoatRamps)}
+            />
+            <Route path="/markermap" component={Layout(MarkerMapExampleGoog)} />
+            <Route path="/iframe" component={Layout(PageWidget)} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     )
   }
 }
