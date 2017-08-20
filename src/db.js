@@ -5,6 +5,7 @@ import {
   SET_FORECAST,
   SET_USERS,
   SET_FORECASTS,
+  SET_FORECAST_OWNER,
   IMPORT_FORECASTS
 } from './constants'
 
@@ -32,7 +33,22 @@ const getOptions = (token, method = 'GET', body = null) => {
   // }
 }
 
+/*
+export const getForecast = forecastId => (dispatch, getState) => {
+  const authProfileSubId = getState().session.profile.sub
+  console.log('Get Forecast Fired')
+  fetch(
+    apiURL + '/users/' + authProfileSubId + '/forecasts/' + forecastId,
+    getOptions(getState().session.id_token)
+  )
+    .then(res => res.json())
+    .then(data => dispatch({ type: SET_FORECAST, payload: data }))
+}
+*/
+
 export const getUser = id => (dispatch, getState) => {
+  const id = getState().session.profile._id
+  console.log('ID', id)
   fetch(apiURL + 'users/' + id, getOptions(getState().session.id_token))
     .then(res => res.json())
     .then(data => dispatch({ type: SET_USER, payload: data }))
@@ -139,29 +155,30 @@ export const updateUser = history => (dispatch, getState) => {
     .then(() => history.push('/'))
 }
 
-// export const removeUser = history => (dispatch, getState) => {
-//   const user = getState().user
-//   fetch(
-//     apiURL + 'users/' + user._id,
-//     getOptions(getState().session.id_token, 'DELETE')
-//   )
-//     .then(res => res.json())
-//     .then(data =>
-//       dispatch({
-//         type: SET_USER,
-//         payload: {
-//           firstName: '',
-//           lastName: '',
-//           primaryPhone: '',
-//           isAdmin: '',
-//           primaryEmail: '',
-//           photo: '',
-//           profiles: []
-//         }
-//       })
-//     )
-//     .then(() => history.push('/users'))
-// }
+export const removeUser = history => (dispatch, getState) => {
+  const user = getState().user
+  fetch(
+    apiURL + 'users/' + user._id,
+    getOptions(getState().session.id_token, 'DELETE')
+  )
+    .then(res => res.json())
+    .then(data =>
+      dispatch({
+        type: SET_USER,
+        payload: {
+          firstName: '',
+          lastName: '',
+          primaryPhone: '',
+          isAdmin: '',
+          primaryEmail: '',
+          photo: '',
+          profiles: []
+        }
+      })
+    )
+    .then(() => history.push('/users'))
+}
+
 export const getForecast = forecastId => (dispatch, getState) => {
   const authProfileSubId = getState().session.profile.sub
   console.log('Get Forecast Fired')

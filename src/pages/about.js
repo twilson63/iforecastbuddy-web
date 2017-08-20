@@ -20,4 +20,9 @@ export default () =>
       will do the rest.
     </p>
     <p class="measure lh-copy">Happy Fising!</p>
+    <iframe
+      src="https://www.google.com/maps/d/u/0/embed?mid=16I_qV_OyavrzVrCAYoKh4xes1T4"
+      width="640"
+      height="480"
+    />
   </div>

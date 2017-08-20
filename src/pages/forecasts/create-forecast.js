@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { TextField, Button } from 't63'
+import store from '../../store'
 import {
   SET_FORECAST_TITLE,
   SET_FORECAST_REGION,
@@ -9,9 +10,11 @@ import {
   SET_FORECAST_MAX_WIND_SPD,
   SET_FORECAST_OWNER
 } from '../../constants'
-import { createForecast } from '../../db.js'
-// import { pathOr } from 'ramda'
+import { createForecast, forecastOwner } from '../../db.js'
 
+// import { pathOr } from 'ramda'
+const owner = `${store.getState().session.profile.firstName} ${store.getState()
+  .session.profile.lastName}`
 class CreateForecast extends React.Component {
   // componentDidMount() {
   //   const id = pathOr(null, ['props', 'match', 'params', 'id'], this)
@@ -25,7 +28,7 @@ class CreateForecast extends React.Component {
       <div className="flex flex-column justify-start w-100 pl4">
         <main className="overflow-scroll">
           <h2 className="pl2 f4 f2-ns">
-            {props._id ? 'Edit ' : 'New '} Forecast
+            {props._id ? 'Edit ' : 'New '} Forecast: {owner}
           </h2>
           <form className="ph2" onSubmit={props.handleSubmit(props.history)}>
             <TextField
@@ -53,12 +56,9 @@ class CreateForecast extends React.Component {
               value={props.forecastMaxWindSpd}
               onChange={props.setforecastMaxWindSpd}
             />
-            <TextField name="Maximum Wave Height" value="TBD" />
-            <TextField name="Shortest Wave Period" value="TBD" />
-            <ion-icon name="thermometer" />
             <TextField
               name="Forecast Owner"
-              value={props.forecastOwner}
+              value={owner}
               onChange={props.setforecastOwner}
             />
             <div className="">

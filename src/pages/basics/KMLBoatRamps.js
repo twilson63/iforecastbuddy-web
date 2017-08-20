@@ -14,7 +14,7 @@ import KmlLayer from './KmlLayer.js'
 const KmlLayerExampleGoogleMap = withGoogleMap(props =>
   <GoogleMap defaultZoom={10} defaultCenter={{ lat: 32.855, lng: -79.948 }}>
     <KmlLayer
-      url="../../lib/BoatRampsLandingsMarinasCharlestonSC.kml"
+      url="https://serene-sierra-27226.herokuapp.com/LocationBoatRamps.kml"
       //  url="http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml"
       options={{ preserveViewport: false }}
     />
